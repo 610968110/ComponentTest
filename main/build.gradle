@@ -1,0 +1,117 @@
+apply plugin: 'me.tatarka.retrolambda'
+if (isRunAlone.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+
+android {
+    def android = rootProject.ext;
+    compileSdkVersion android.compileSdkVersion
+    buildToolsVersion android.buildToolsVersion
+
+    defaultConfig {
+        if (isRunAlone.toBoolean()) {
+            //组件模式下设置applicationId
+            applicationId "com.lbx.main"
+        }
+        minSdkVersion android.minSdkVersion
+        targetSdkVersion android.targetSdkVersion
+        versionCode android.versionCode
+        versionName android.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //ndk {
+        //    // 设置支持的SO库架构
+        //    abiFilters 'armeabi'// , 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        //}	
+        allprojects {
+            tasks.withType(Javadoc) {
+                options.addStringOption('Xdoclint:none', '-quiet')
+                options.addStringOption('encoding', 'UTF-8')
+            }
+        }
+        if (!isRunAlone.toBoolean()) {
+            //集成模式下Arouter的配置，用于组件间通信的实现
+            javaCompileOptions {
+                annotationProcessorOptions {
+                    arguments = [moduleName: project.getName()]
+                }
+            }
+        }
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            tasks.whenTaskAdded { task ->
+                if (task.name.contains("lint")) {
+                    task.enabled = false
+                }
+            }
+            project.gradle.startParameter.excludedTaskNames.add('lint')
+            aaptOptions {
+                cruncherEnabled = false
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dexOptions {
+        jumboMode true
+        preDexLibraries true
+        maxProcessCount 8
+        javaMaxHeapSize "4g"
+    }
+    dataBinding {
+        enabled = true
+    }
+    lintOptions {
+        //不在error情况下中断
+        abortOnError false
+        //无视字符串缺少本地化的情况
+        disable 'MissingTranslation'
+        //无视多做了本地化的字符串
+        disable 'ExtraTranslation'
+    }
+    sourceSets {
+        main {
+            //控制两种模式下的资源和代码配置情况
+            if (isRunAlone.toBoolean()) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+                java.srcDirs = ['src/main/java', 'src/main/java/module']
+                res.srcDirs = ['src/main/res', 'src/main/java/module/res']
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    exclude 'debug/**'
+                }
+            }
+        }
+    }
+}
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:$rootProject.appcompatVersion"
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.routerCompilerVersion"
+    compile project(':lib_common')
+}
