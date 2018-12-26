@@ -41,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fragment(View view) {
-        Fragment fragment = (Fragment) ARouter.getInstance().build("/module1/module1Fragment").navigation();
+        Fragment fragment = (Fragment) ARouter.getInstance()
+                .build("/module1/module1Fragment")
+                .navigation();
         if (fragment != null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fl_main, fragment)
