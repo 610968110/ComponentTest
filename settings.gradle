@@ -1,1 +1,1 @@
-include ':app', ':module1', ':lib_common', ':moduleurl', ':main', ':componentservice'
+include ':app', ':module1', ':lib_common', ':moduleurl', ':main'

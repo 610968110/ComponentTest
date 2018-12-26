@@ -113,7 +113,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.routerCompilerVersion"
-    compile project(':componentservice')
     if (!isRunAlone.toBoolean()) {
         compile project(':module1')
         compile project(':moduleurl')

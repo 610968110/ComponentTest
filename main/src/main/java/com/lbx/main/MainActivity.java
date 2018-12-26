@@ -1,6 +1,7 @@
 package com.lbx.main;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -40,8 +41,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fragment(View view) {
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.fl_main, new Module1Fragment())
-//                .commitAllowingStateLoss();
+        Fragment fragment = (Fragment) ARouter.getInstance().build("/module1/module1Fragment").navigation();
+        if (fragment != null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fl_main, fragment)
+                    .commitAllowingStateLoss();
+        }
     }
 }

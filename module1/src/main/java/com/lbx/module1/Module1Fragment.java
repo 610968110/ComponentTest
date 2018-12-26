@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 /**
  * .  ┏┓　　　┏┓
  * .┏┛┻━━━┛┻┓
@@ -30,7 +32,7 @@ import android.widget.TextView;
  * @author lbx
  * @date 2018/12/26.
  */
-
+@Route(path = "/module1/module1Fragment")
 public class Module1Fragment extends Fragment {
 
     @Nullable
