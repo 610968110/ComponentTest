@@ -10,7 +10,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 
 /**
  * @author lbx
- * 用于h5中点击的跳转交互
+ *         用于h5中点击的跳转交互
  */
 public class UrlActivity extends AppCompatActivity {
 

@@ -1,6 +1,12 @@
-package com.lbx.componenttest;
+package com.lbx.module1;
 
-import com.lbx.lib_common.BaseApplication;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * .  ┏┓　　　┏┓
@@ -22,14 +28,16 @@ import com.lbx.lib_common.BaseApplication;
  * .      ┗┻┛　┗┻┛
  *
  * @author lbx
- * @date 2018/12/10.
+ * @date 2018/12/26.
  */
 
-public class MyApplication extends BaseApplication {
+public class Module1Fragment extends Fragment {
 
-
+    @Nullable
     @Override
-    public void onCreate(boolean isDebug) {
-
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        TextView textView = new TextView(getContext());
+        textView.setText("我是module1里的fragment");
+        return textView;
     }
 }

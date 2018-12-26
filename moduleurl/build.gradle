@@ -31,12 +31,9 @@ android {
                 options.addStringOption('encoding', 'UTF-8')
             }
         }
-        if (!isRunAlone.toBoolean()) {
-            //集成模式下Arouter的配置，用于组件间通信的实现
-            javaCompileOptions {
-                annotationProcessorOptions {
-                    arguments = [moduleName: project.getName()]
-                }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
             }
         }
         multiDexEnabled true

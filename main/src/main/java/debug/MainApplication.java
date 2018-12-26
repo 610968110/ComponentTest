@@ -25,7 +25,7 @@ import com.lbx.lib_common.BaseApplication;
  * @date 2018/12/11.
  */
 
-public class MainApplacation extends BaseApplication {
+public class MainApplication extends BaseApplication {
     @Override
     public void onCreate(boolean isDebug) {
 

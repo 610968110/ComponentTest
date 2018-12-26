@@ -34,4 +34,14 @@ public class MainActivity extends AppCompatActivity {
                 .withString("url", "file:///android_asset/schame-test.html")
                 .navigation();
     }
+
+    public void service(View view) {
+        new ServiceTest().testService();
+    }
+
+    public void fragment(View view) {
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.fl_main, new Module1Fragment())
+//                .commitAllowingStateLoss();
+    }
 }
