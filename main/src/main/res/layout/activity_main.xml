@@ -33,6 +33,12 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="asyncService"
+        android:text="异步service" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="fragment"
         android:text="fragment" />
 

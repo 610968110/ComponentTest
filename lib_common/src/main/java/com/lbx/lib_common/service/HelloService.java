@@ -1,4 +1,4 @@
-package com.lbx.module1.service;
+package com.lbx.lib_common.service;
 
 import com.alibaba.android.arouter.facade.template.IProvider;
 

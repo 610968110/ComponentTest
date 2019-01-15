@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
@@ -38,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void service(View view) {
         new ServiceTest().testService();
+    }
+
+    public void asyncService(View view) {
+        new AsyncServiceTest().test((s) -> Toast.makeText(this, s, Toast.LENGTH_SHORT).show());
     }
 
     public void fragment(View view) {

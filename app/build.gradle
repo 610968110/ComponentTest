@@ -88,9 +88,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile "com.android.support:appcompat-v7:$rootProject.appcompatVersion"
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.routerCompilerVersion"
+    compile project(':lib_common')
     if (!isRunAlone.toBoolean()) {
         compile project(':main')
-    } else {
-        compile project(':lib_common')
+        compile project(':module1')
+        compile project(':moduleurl')
     }
 }

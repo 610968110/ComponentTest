@@ -2,7 +2,7 @@ package com.lbx.main;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.lbx.module1.service.HelloService;
+import com.lbx.lib_common.service.HelloService;
 
 import lbx.xtoollib.XTools;
 import lbx.xtoollib.phone.xLogUtil;
